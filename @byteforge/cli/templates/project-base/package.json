@@ -1,0 +1,27 @@
+{
+  "name": "project-name",
+  "version": "1.0.0",
+  "description": "TypeScript monorepo project",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "npm run dev --workspace=packages/app-web",
+    "build": "npm run build --workspaces",
+    "type-check": "tsc --build",
+    "clean": "rm -rf packages/*/dist packages/*/node_modules"
+  },
+  "keywords": ["typescript", "monorepo"],
+  "author": "",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "@types/node": "^24.5.1",
+    "prettier": "^3.6.2",
+    "@vitejs/plugin-react": "^5.0.3",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vite": "^7.1.5"
+  }
+}
