@@ -1,97 +1,152 @@
 @byteforge/cli
 =================
 
-A new CLI generated with oclif
+A powerful CLI for creating TypeScript monorepo projects with modern tooling
 
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/@byteforge/cli.svg)](https://npmjs.org/package/@byteforge/cli)
 [![Downloads/week](https://img.shields.io/npm/dw/@byteforge/cli.svg)](https://npmjs.org/package/@byteforge/cli)
 
+## Features
+
+- 🚀 **Modern TypeScript Monorepo** - Create scalable monorepo projects with shared configurations
+- ⚛️ **React Apps with Latest Stack** - Vite + React + TypeScript + React Router v7
+- 🎨 **Material-UI Integration** - Pre-configured MUI with theming support
+- 🗃️ **Redux Toolkit** - State management with modern Redux patterns
+- 🔄 **Automatic Alias Management** - TypeScript and Vite path aliases auto-configured
+- 📦 **Workspace Management** - Apps and libs with shared tooling (ESLint, TypeScript)
+- 🛠️ **Developer Experience** - Hot reload, optimized builds, and comprehensive tooling
 
 <!-- toc -->
 * [Usage](#usage)
+* [Quick Start](#quick-start)
 * [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g mycli123
-$ mycli123 COMMAND
+$ npm install -g @byteforge/cli
+$ bforge COMMAND
 running command...
-$ mycli123 (--version)
-mycli123/0.0.0 darwin-arm64 node-v20.12.2
-$ mycli123 --help [COMMAND]
+$ bforge (--version)
+@byteforge/cli/0.0.0 win32-x64 node-v18.0.0
+$ bforge --help [COMMAND]
 USAGE
-  $ mycli123 COMMAND
+  $ bforge COMMAND
 ...
 ```
 <!-- usagestop -->
+
+# Quick Start
+
+## Create a new monorepo project
+
+```bash
+# Create a new monorepo project
+bforge create my-project
+
+# Or create in current directory
+bforge create ./
+```
+
+## Add a React app to your monorepo
+
+```bash
+# Navigate to your monorepo root
+cd my-project
+
+# Create a new React app with full stack
+bforge create:app my-react-app
+```
+
+This automatically sets up:
+- ⚛️ React 19 + TypeScript
+- 🚀 Vite for fast development and builds
+- 🎨 Material-UI v7 with theming
+- 🗃️ Redux Toolkit v2 for state management
+- 🧭 React Router v7 with Data API
+- 🔧 ESLint integration with monorepo
+- 📁 TypeScript path aliases (`@my-react-app/*`)
+
 # Commands
 <!-- commands -->
-* [`mycli123 hello PERSON`](#mycli123-hello-person)
-* [`mycli123 hello world`](#mycli123-hello-world)
-* [`mycli123 help [COMMAND]`](#mycli123-help-command)
-* [`mycli123 plugins`](#mycli123-plugins)
-* [`mycli123 plugins add PLUGIN`](#mycli123-plugins-add-plugin)
-* [`mycli123 plugins:inspect PLUGIN...`](#mycli123-pluginsinspect-plugin)
-* [`mycli123 plugins install PLUGIN`](#mycli123-plugins-install-plugin)
-* [`mycli123 plugins link PATH`](#mycli123-plugins-link-path)
-* [`mycli123 plugins remove [PLUGIN]`](#mycli123-plugins-remove-plugin)
-* [`mycli123 plugins reset`](#mycli123-plugins-reset)
-* [`mycli123 plugins uninstall [PLUGIN]`](#mycli123-plugins-uninstall-plugin)
-* [`mycli123 plugins unlink [PLUGIN]`](#mycli123-plugins-unlink-plugin)
-* [`mycli123 plugins update`](#mycli123-plugins-update)
+* [`bforge create PROJECTNAME`](#bforge-create-projectname)
+* [`bforge create:app APPNAME`](#bforge-createapp-appname)
+* [`bforge help [COMMAND]`](#bforge-help-command)
 
-## `mycli123 hello PERSON`
+## `bforge create PROJECTNAME`
 
-Say hello
+Create a new TypeScript monorepo project
 
 ```
 USAGE
-  $ mycli123 hello PERSON -f <value>
+  $ bforge create PROJECTNAME [-y]
 
 ARGUMENTS
-  PERSON  Person to say hello to
+  PROJECTNAME  Name of the new project
 
 FLAGS
-  -f, --from=<value>  (required) Who is saying hello
+  -y, --yes  Skip confirmation prompt
 
 DESCRIPTION
-  Say hello
+  Create a new TypeScript monorepo project with shared configurations for ESLint, TypeScript, and Vite.
+  
+  The generated project includes:
+  - Workspace configuration for apps and libs
+  - Shared TypeScript configuration (tsconfig.base.json)
+  - Shared Vite configuration (vite.config.base.ts) 
+  - ESLint configuration for the entire monorepo
+  - Ready-to-use folder structure (apps/, libs/)
 
 EXAMPLES
-  $ mycli123 hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
+  $ bforge create my-awesome-project
+
+  $ bforge create ./
+
+  $ bforge create my-project --yes
 ```
 
-_See code: [src/commands/hello/index.ts](https://github.com/mdonnalley/mycli123/blob/v0.0.0/src/commands/hello/index.ts)_
+## `bforge create:app APPNAME`
 
-## `mycli123 hello world`
-
-Say hello world
+Create a new React app in the apps directory using Vite + React + TypeScript
 
 ```
 USAGE
-  $ mycli123 hello world
+  $ bforge create:app APPNAME
+
+ARGUMENTS
+  APPNAME  Name of the new app
 
 DESCRIPTION
-  Say hello world
+  Create a new React app with modern tooling in an existing monorepo.
+  
+  This command must be run from the root of a monorepo project.
+  
+  The generated app includes:
+  - React 19 + TypeScript setup
+  - Vite for fast development and optimized builds  
+  - Material-UI v7 with custom theme support
+  - Redux Toolkit v2 for state management
+  - React Router v7 with Data API
+  - Pre-configured folder structure (pages/, routes/, store/, theme/)
+  - Automatic TypeScript and Vite alias configuration
+  - Integration with monorepo ESLint configuration
 
 EXAMPLES
-  $ mycli123 hello world
-  hello world! (./src/commands/hello/world.ts)
+  $ bforge create:app my-dashboard
+  
+  $ bforge create:app user-portal
 ```
 
-_See code: [src/commands/hello/world.ts](https://github.com/mdonnalley/mycli123/blob/v0.0.0/src/commands/hello/world.ts)_
+## `bforge help [COMMAND]`
 
-## `mycli123 help [COMMAND]`
-
-Display help for mycli123.
+Display help for bforge.
 
 ```
 USAGE
-  $ mycli123 help [COMMAND...] [-n]
+  $ bforge help [COMMAND...] [-n]
 
 ARGUMENTS
   COMMAND...  Command to show help for.
@@ -100,297 +155,71 @@ FLAGS
   -n, --nested-commands  Include all nested commands in the output.
 
 DESCRIPTION
-  Display help for mycli123.
+  Display help for bforge.
 ```
-
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.0.21/src/commands/help.ts)_
-
-## `mycli123 plugins`
-
-List installed plugins.
-
-```
-USAGE
-  $ mycli123 plugins [--json] [--core]
-
-FLAGS
-  --core  Show core plugins.
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  List installed plugins.
-
-EXAMPLES
-  $ mycli123 plugins
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.16/src/commands/plugins/index.ts)_
-
-## `mycli123 plugins add PLUGIN`
-
-Installs a plugin into mycli123.
-
-```
-USAGE
-  $ mycli123 plugins add PLUGIN... [--json] [-f] [-h] [-s | -v]
-
-ARGUMENTS
-  PLUGIN...  Plugin to install.
-
-FLAGS
-  -f, --force    Force npm to fetch remote resources even if a local copy exists on disk.
-  -h, --help     Show CLI help.
-  -s, --silent   Silences npm output.
-  -v, --verbose  Show verbose npm output.
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Installs a plugin into mycli123.
-
-  Uses bundled npm executable to install plugins into /Users/mdonnalley/.local/share/mycli123
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  Use the MYCLI123_NPM_LOG_LEVEL environment variable to set the npm loglevel.
-  Use the MYCLI123_NPM_REGISTRY environment variable to set the npm registry.
-
-ALIASES
-  $ mycli123 plugins add
-
-EXAMPLES
-  Install a plugin from npm registry.
-
-    $ mycli123 plugins add myplugin
-
-  Install a plugin from a github url.
-
-    $ mycli123 plugins add https://github.com/someuser/someplugin
-
-  Install a plugin from a github slug.
-
-    $ mycli123 plugins add someuser/someplugin
-```
-
-## `mycli123 plugins:inspect PLUGIN...`
-
-Displays installation properties of a plugin.
-
-```
-USAGE
-  $ mycli123 plugins inspect PLUGIN...
-
-ARGUMENTS
-  PLUGIN...  [default: .] Plugin to inspect.
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Displays installation properties of a plugin.
-
-EXAMPLES
-  $ mycli123 plugins inspect myplugin
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.16/src/commands/plugins/inspect.ts)_
-
-## `mycli123 plugins install PLUGIN`
-
-Installs a plugin into mycli123.
-
-```
-USAGE
-  $ mycli123 plugins install PLUGIN... [--json] [-f] [-h] [-s | -v]
-
-ARGUMENTS
-  PLUGIN...  Plugin to install.
-
-FLAGS
-  -f, --force    Force npm to fetch remote resources even if a local copy exists on disk.
-  -h, --help     Show CLI help.
-  -s, --silent   Silences npm output.
-  -v, --verbose  Show verbose npm output.
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Installs a plugin into mycli123.
-
-  Uses bundled npm executable to install plugins into /Users/mdonnalley/.local/share/mycli123
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  Use the MYCLI123_NPM_LOG_LEVEL environment variable to set the npm loglevel.
-  Use the MYCLI123_NPM_REGISTRY environment variable to set the npm registry.
-
-ALIASES
-  $ mycli123 plugins add
-
-EXAMPLES
-  Install a plugin from npm registry.
-
-    $ mycli123 plugins install myplugin
-
-  Install a plugin from a github url.
-
-    $ mycli123 plugins install https://github.com/someuser/someplugin
-
-  Install a plugin from a github slug.
-
-    $ mycli123 plugins install someuser/someplugin
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.16/src/commands/plugins/install.ts)_
-
-## `mycli123 plugins link PATH`
-
-Links a plugin into the CLI for development.
-
-```
-USAGE
-  $ mycli123 plugins link PATH [-h] [--install] [-v]
-
-ARGUMENTS
-  PATH  [default: .] path to plugin
-
-FLAGS
-  -h, --help          Show CLI help.
-  -v, --verbose
-      --[no-]install  Install dependencies after linking the plugin.
-
-DESCRIPTION
-  Links a plugin into the CLI for development.
-  Installation of a linked plugin will override a user-installed or core plugin.
-
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
-  command will override the user-installed or core plugin implementation. This is useful for development work.
-
-
-EXAMPLES
-  $ mycli123 plugins link myplugin
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.16/src/commands/plugins/link.ts)_
-
-## `mycli123 plugins remove [PLUGIN]`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ mycli123 plugins remove [PLUGIN...] [-h] [-v]
-
-ARGUMENTS
-  PLUGIN...  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ mycli123 plugins unlink
-  $ mycli123 plugins remove
-
-EXAMPLES
-  $ mycli123 plugins remove myplugin
-```
-
-## `mycli123 plugins reset`
-
-Remove all user-installed and linked plugins.
-
-```
-USAGE
-  $ mycli123 plugins reset [--hard] [--reinstall]
-
-FLAGS
-  --hard       Delete node_modules and package manager related files in addition to uninstalling plugins.
-  --reinstall  Reinstall all plugins after uninstalling.
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.16/src/commands/plugins/reset.ts)_
-
-## `mycli123 plugins uninstall [PLUGIN]`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ mycli123 plugins uninstall [PLUGIN...] [-h] [-v]
-
-ARGUMENTS
-  PLUGIN...  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ mycli123 plugins unlink
-  $ mycli123 plugins remove
-
-EXAMPLES
-  $ mycli123 plugins uninstall myplugin
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.16/src/commands/plugins/uninstall.ts)_
-
-## `mycli123 plugins unlink [PLUGIN]`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ mycli123 plugins unlink [PLUGIN...] [-h] [-v]
-
-ARGUMENTS
-  PLUGIN...  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ mycli123 plugins unlink
-  $ mycli123 plugins remove
-
-EXAMPLES
-  $ mycli123 plugins unlink myplugin
-```
-
-## `mycli123 plugins update`
-
-Update installed plugins.
-
-```
-USAGE
-  $ mycli123 plugins update [-h] [-v]
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Update installed plugins.
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.0.16/src/commands/plugins/update.ts)_
 <!-- commandsstop -->
+
+## Project Structure
+
+### Generated Monorepo Structure
+
+```
+my-project/
+├── apps/                    # Application packages
+│   └── my-app/
+│       ├── src/
+│       │   ├── pages/       # Page components
+│       │   ├── routes/      # Router configuration  
+│       │   ├── store/       # Redux store & slices
+│       │   ├── theme/       # MUI theme configuration
+│       │   ├── main.tsx     # App entry point
+│       │   └── App.tsx      # Provider setup
+│       ├── package.json     # App-specific dependencies
+│       └── vite.config.ts   # Extends monorepo base
+├── libs/                    # Shared library packages
+├── package.json             # Workspace configuration
+├── tsconfig.base.json       # Shared TypeScript config
+├── vite.config.base.ts      # Shared Vite config  
+└── eslint.config.mjs        # Monorepo ESLint config
+```
+
+### Generated React App Features
+
+Each React app created with `bforge create:app` includes:
+
+- **🏗️ Modern Architecture**: Clean separation of concerns with dedicated folders
+- **🎨 UI Components**: Material-UI v7 with custom theming support
+- **🗃️ State Management**: Redux Toolkit store with TypeScript support
+- **🧭 Routing**: React Router v7 with Data API and type-safe routing
+- **⚡ Fast Development**: Vite HMR with optimized dependency pre-bundling
+- **🔧 Type Safety**: Full TypeScript support with path aliases
+- **📦 Monorepo Integration**: Shared tooling and configurations
+
+## Development Workflow
+
+```bash
+# Create a new monorepo
+bforge create my-workspace
+cd my-workspace
+
+# Install dependencies
+npm install
+
+# Create multiple apps
+bforge create:app admin-dashboard  
+bforge create:app customer-portal
+bforge create:app marketing-site
+
+# Start development
+cd apps/admin-dashboard
+npm run dev
+```
+
+## Requirements
+
+- Node.js 18.0.0 or higher
+- npm 7.0.0 or higher (for workspace support)
+
+## License
+
+MIT
