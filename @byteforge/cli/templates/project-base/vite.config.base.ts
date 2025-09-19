@@ -1,30 +1,39 @@
+import react from '@vitejs/plugin-react'
+import {resolve} from 'node:path'
 import {defineConfig} from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import react from '@vitejs/plugin-react'
-import {resolve} from 'path'
 
 // Helper function für Monorepo Aliases
 const getMonorepoAliases = () => {
-    const packages = ['shared-ui', 'utils']
+    const apps: string[] = []
+    const libs: string[] = []
     const aliases: Record<string, string> = {}
 
-    for (const pkg of packages) {
-        aliases[`@${pkg}`] = resolve(__dirname, `packages/${pkg}/src`)
-        aliases[`@${pkg}/*`] = resolve(__dirname, `packages/${pkg}/src/*`)
+    // Add aliases for apps
+    for (const app of apps) {
+        aliases[`@${app}`] = resolve(__dirname, `apps/${app}/src`)
+        aliases[`@${app}/*`] = resolve(__dirname, `apps/${app}/src/*`)
+    }
+
+    // Add aliases for libs
+    for (const lib of libs) {
+        aliases[`@${lib}`] = resolve(__dirname, `libs/${lib}/src`)
+        aliases[`@${lib}/*`] = resolve(__dirname, `libs/${lib}/src/*`)
     }
 
     return aliases
 }
 
 export const baseViteConfig = defineConfig({
+    optimizeDeps: {
+        // Will be dynamically updated when apps/libs are added
+        include: []
+    },
     plugins: [react(), tsconfigPaths()],
     resolve: {
         alias: {
-            // Füge alle Monorepo Aliases hinzu
+            // Add all Monorepo Aliases
             ...getMonorepoAliases(),
         },
-    },
-    optimizeDeps: {
-        include: ['@shared-ui', '@utils']
     }
 })

@@ -15,7 +15,8 @@
     "posttest": "npm run lint",
     "prepack": "oclif manifest && oclif readme",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "test:cli": "shx rm -rf ../../tmp/* && cd ../../tmp && node ../@byteforge/cli/bin/run.js create ./",
+    "create:project": "shx rm -rf ../../tmp/* && cd ../../tmp && node ../@byteforge/cli/bin/run.js create test-project --yes",
+    "create:app": "shx rm -rf ../../tmp/* && cd ../../tmp && node ../@byteforge/cli/bin/run.js create test-project --yes && cd test-project && node ../../@byteforge/cli/bin/run.js create:app TestApp",
     "version": "oclif readme && git add README.md"
   },
   "dependencies": {
@@ -27,7 +28,6 @@
   },
   "devDependencies": {
     "@eslint/compat": "^1",
-    "@oclif/prettier-config": "^0.2.1",
     "@oclif/test": "^4",
     "@types/chai": "^4",
     "@types/fs-extra": "^11.0.4",
@@ -35,6 +35,7 @@
     "@types/node": "^18",
     "@types/prompts": "^2.4.9",
     "chai": "^4",
+    "prettier": "^3.6.2",
     "eslint": "^9",
     "eslint-config-oclif": "^6",
     "eslint-config-prettier": "^10",
